@@ -1,0 +1,59 @@
+<div fxLayoutGap='16px'>
+  <div fxFlex>
+
+    <mat-card class='mat-elevation-z8'>
+      <mat-card-title>
+        Services:
+      </mat-card-title>
+
+      <mat-card-content>
+
+        <mat-list>
+          <mat-list-item *ngFor="let item of checkboxesDataList">
+            <mat-checkbox name="" id="" totalValue="" [(ngModel)]="item.isChecked" (change)="changeSelection()">
+              {{item.label}}
+            </mat-checkbox>
+          </mat-list-item>
+        </mat-list>
+
+        <mat-list>
+          <mat-list-item>
+            <mat-label>Parts Cost:   </mat-label>
+            <input type='number' [(ngModel)]='partsCost'>
+          </mat-list-item>
+
+          <mat-list-item>
+            <mat-label>Labor Cost:  </mat-label>
+            <input type='number' [(ngModel)]='laborCost'>
+          </mat-list-item>
+
+        </mat-list>
+
+      </mat-card-content>
+
+      <div [hidden]='selectedItemsList.length == 0'>
+        <button mat-button background-color='accent' (click)='openDialog()'>Submit</button>
+      </div>
+
+    </mat-card>
+  </div>
+
+  <div fxFlex>
+    <mat-card class='mat-elevation-z8'>
+      <mat-card-title>
+        Your Order:
+      </mat-card-title>
+
+        <mat-list>
+          <h2>Services:</h2>
+            <mat-list-item *ngFor="let item of selectedItemsList">{{item.label}}</mat-list-item>
+
+          <h2>Parts and Labor:</h2>
+            <mat-list-item>Parts Cost: ${{ partsCost | number: '1.2'}}</mat-list-item>
+            <mat-list-item>Labor Cost: ${{ laborCost | number: '1.2'}}</mat-list-item>
+
+          <h2>Total:${{total + partsCost + laborCost | number: '1.2'}}</h2>
+        </mat-list>
+    </mat-card>
+  </div>
+</div>
